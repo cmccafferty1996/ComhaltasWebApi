@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="comhaltasTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin_users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_logon" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Age_groups">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="age_group" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Age_groups1" Relationship="Self.FK_Age_groups_Age_groups" FromRole="Age_groups" ToRole="Age_groups1" />
+    <NavigationProperty Name="Age_groups2" Relationship="Self.FK_Age_groups_Age_groups" FromRole="Age_groups1" ToRole="Age_groups" />
+    <NavigationProperty Name="Competitions" Relationship="Self.FK_Competitions_Age_groups" FromRole="Age_groups" ToRole="Competitions" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="branch_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Entrants" Relationship="Self.FK_Entrant_Branches" FromRole="Branches" ToRole="Entrant" />
+  </EntityType>
+  <EntityType Name="Competition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="competition_number" Type="Byte" Nullable="false" />
+    <Property Name="competition_name" Type="String" MaxLength="65" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="age_group" Type="Byte" Nullable="false" />
+    <Property Name="competition_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Age_groups" Relationship="Self.FK_Competitions_Age_groups" FromRole="Competitions" ToRole="Age_groups" />
+    <NavigationProperty Name="Entries" Relationship="Self.FK_Entries_Competitions" FromRole="Competitions" ToRole="Entries" />
+    <NavigationProperty Name="Results" Relationship="Self.FK_Results_Competitions" FromRole="Competitions" ToRole="Results" />
+  </EntityType>
+  <EntityType Name="Entrant">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="entrant_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="branch" Type="Byte" Nullable="false" />
+    <Property Name="dob" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Branch1" Relationship="Self.FK_Entrant_Branches" FromRole="Entrant" ToRole="Branches" />
+    <NavigationProperty Name="Entries" Relationship="Self.FK_Entries_Entrant" FromRole="Entrant" ToRole="Entries" />
+    <NavigationProperty Name="Entries1" Relationship="Self.FK_Entries_Entrant1" FromRole="Entrant" ToRole="Entries" />
+    <NavigationProperty Name="Entries2" Relationship="Self.FK_Entries_Entrant2" FromRole="Entrant" ToRole="Entries" />
+  </EntityType>
+  <EntityType Name="Entry">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="entrant" Type="Int16" Nullable="false" />
+    <Property Name="competition" Type="Int16" Nullable="false" />
+    <Property Name="registered" Type="Boolean" Nullable="false" />
+    <Property Name="instrument1" Type="Byte" />
+    <Property Name="entrant2" Type="Int16" />
+    <Property Name="instrument2" Type="Byte" />
+    <Property Name="entrant3" Type="Int16" />
+    <Property Name="instrument3" Type="Byte" />
+    <NavigationProperty Name="Competition1" Relationship="Self.FK_Entries_Competitions" FromRole="Entries" ToRole="Competitions" />
+    <NavigationProperty Name="Entrant1" Relationship="Self.FK_Entries_Entrant" FromRole="Entries" ToRole="Entrant" />
+    <NavigationProperty Name="Entrant4" Relationship="Self.FK_Entries_Entrant1" FromRole="Entries" ToRole="Entrant" />
+    <NavigationProperty Name="Entrant5" Relationship="Self.FK_Entries_Entrant2" FromRole="Entries" ToRole="Entrant" />
+    <NavigationProperty Name="Instrument" Relationship="Self.FK_Entries_Instruments" FromRole="Entries" ToRole="Instruments" />
+    <NavigationProperty Name="Instrument4" Relationship="Self.FK_Entries_Instruments1" FromRole="Entries" ToRole="Instruments" />
+    <NavigationProperty Name="Instrument5" Relationship="Self.FK_Entries_Instruments2" FromRole="Entries" ToRole="Instruments" />
+    <NavigationProperty Name="Results" Relationship="Self.FK_Results_Entrant" FromRole="Entries" ToRole="Results" />
+    <NavigationProperty Name="Results1" Relationship="Self.FK_Results_Entrant1" FromRole="Entries" ToRole="Results" />
+    <NavigationProperty Name="Results2" Relationship="Self.FK_Results_Entrant2" FromRole="Entries" ToRole="Results" />
+    <NavigationProperty Name="Results3" Relationship="Self.FK_Results_Entrant3" FromRole="Entries" ToRole="Results" />
+  </EntityType>
+  <EntityType Name="Instrument">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="instrument_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="competition_type" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Entries" Relationship="Self.FK_Entries_Instruments" FromRole="Instruments" ToRole="Entries" />
+    <NavigationProperty Name="Entries1" Relationship="Self.FK_Entries_Instruments1" FromRole="Instruments" ToRole="Entries" />
+    <NavigationProperty Name="Entries2" Relationship="Self.FK_Entries_Instruments2" FromRole="Instruments" ToRole="Entries" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="competition" Type="Int16" Nullable="false" />
+    <Property Name="first" Type="Int16" Nullable="false" />
+    <Property Name="second" Type="Int16" />
+    <Property Name="third" Type="Int16" />
+    <Property Name="recommended" Type="Int16" />
+    <NavigationProperty Name="Competition1" Relationship="Self.FK_Results_Competitions" FromRole="Results" ToRole="Competitions" />
+    <NavigationProperty Name="Entry" Relationship="Self.FK_Results_Entrant" FromRole="Results" ToRole="Entries" />
+    <NavigationProperty Name="Entry1" Relationship="Self.FK_Results_Entrant1" FromRole="Results" ToRole="Entries" />
+    <NavigationProperty Name="Entry2" Relationship="Self.FK_Results_Entrant2" FromRole="Results" ToRole="Entries" />
+    <NavigationProperty Name="Entry3" Relationship="Self.FK_Results_Entrant3" FromRole="Results" ToRole="Entries" />
+  </EntityType>
+  <Association Name="FK_Age_groups_Age_groups">
+    <End Role="Age_groups" Type="Self.Age_groups" Multiplicity="1" />
+    <End Role="Age_groups1" Type="Self.Age_groups" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Age_groups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Age_groups1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Competitions_Age_groups">
+    <End Role="Age_groups" Type="Self.Age_groups" Multiplicity="1" />
+    <End Role="Competitions" Type="Self.Competition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Age_groups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Competitions">
+        <PropertyRef Name="age_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entrant_Branches">
+    <End Role="Branches" Type="Self.Branch" Multiplicity="1" />
+    <End Role="Entrant" Type="Self.Entrant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Entrant">
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Competitions">
+    <End Role="Competitions" Type="Self.Competition" Multiplicity="1" />
+    <End Role="Entries" Type="Self.Entry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Competitions">
+    <End Role="Competitions" Type="Self.Competition" Multiplicity="1" />
+    <End Role="Results" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Entrant">
+    <End Role="Entrant" Type="Self.Entrant" Multiplicity="1" />
+    <End Role="Entries" Type="Self.Entry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entrant">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="entrant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Entrant1">
+    <End Role="Entrant" Type="Self.Entrant" Multiplicity="0..1" />
+    <End Role="Entries" Type="Self.Entry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entrant">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="entrant2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Entrant2">
+    <End Role="Entrant" Type="Self.Entrant" Multiplicity="0..1" />
+    <End Role="Entries" Type="Self.Entry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entrant">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="entrant3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Instruments">
+    <End Role="Instruments" Type="Self.Instrument" Multiplicity="0..1" />
+    <End Role="Entries" Type="Self.Entry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instruments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="instrument1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Instruments1">
+    <End Role="Instruments" Type="Self.Instrument" Multiplicity="0..1" />
+    <End Role="Entries" Type="Self.Entry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instruments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="instrument2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Instruments2">
+    <End Role="Instruments" Type="Self.Instrument" Multiplicity="0..1" />
+    <End Role="Entries" Type="Self.Entry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instruments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="instrument3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Entrant">
+    <End Role="Entries" Type="Self.Entry" Multiplicity="1" />
+    <End Role="Results" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="first" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Entrant1">
+    <End Role="Entries" Type="Self.Entry" Multiplicity="0..1" />
+    <End Role="Results" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="second" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Entrant2">
+    <End Role="Entries" Type="Self.Entry" Multiplicity="0..1" />
+    <End Role="Results" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="third" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Entrant3">
+    <End Role="Entries" Type="Self.Entry" Multiplicity="0..1" />
+    <End Role="Results" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="recommended" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="comhaltasTestEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin_users" EntityType="Self.Admin_users" />
+    <EntitySet Name="Age_groups" EntityType="Self.Age_groups" />
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="Competitions" EntityType="Self.Competition" />
+    <EntitySet Name="Entrants" EntityType="Self.Entrant" />
+    <EntitySet Name="Entries" EntityType="Self.Entry" />
+    <EntitySet Name="Instruments" EntityType="Self.Instrument" />
+    <EntitySet Name="Results" EntityType="Self.Result" />
+    <AssociationSet Name="FK_Age_groups_Age_groups" Association="Self.FK_Age_groups_Age_groups">
+      <End Role="Age_groups" EntitySet="Age_groups" />
+      <End Role="Age_groups1" EntitySet="Age_groups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Competitions_Age_groups" Association="Self.FK_Competitions_Age_groups">
+      <End Role="Age_groups" EntitySet="Age_groups" />
+      <End Role="Competitions" EntitySet="Competitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entrant_Branches" Association="Self.FK_Entrant_Branches">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Entrant" EntitySet="Entrants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Competitions" Association="Self.FK_Entries_Competitions">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Competitions" Association="Self.FK_Results_Competitions">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Entrant" Association="Self.FK_Entries_Entrant">
+      <End Role="Entrant" EntitySet="Entrants" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Entrant1" Association="Self.FK_Entries_Entrant1">
+      <End Role="Entrant" EntitySet="Entrants" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Entrant2" Association="Self.FK_Entries_Entrant2">
+      <End Role="Entrant" EntitySet="Entrants" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Instruments" Association="Self.FK_Entries_Instruments">
+      <End Role="Instruments" EntitySet="Instruments" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Instruments1" Association="Self.FK_Entries_Instruments1">
+      <End Role="Instruments" EntitySet="Instruments" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Instruments2" Association="Self.FK_Entries_Instruments2">
+      <End Role="Instruments" EntitySet="Instruments" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Entrant" Association="Self.FK_Results_Entrant">
+      <End Role="Entries" EntitySet="Entries" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Entrant1" Association="Self.FK_Results_Entrant1">
+      <End Role="Entries" EntitySet="Entries" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Entrant2" Association="Self.FK_Results_Entrant2">
+      <End Role="Entries" EntitySet="Entries" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Entrant3" Association="Self.FK_Results_Entrant3">
+      <End Role="Entries" EntitySet="Entries" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

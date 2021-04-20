@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Fleadh_Admin.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title>Fleadh Admin</title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="Scripts/JScript1.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="cpHeadContent" runat="server" />
+</head>
+
+<body>
+    <form id="masterform" runat="server">
+
+    <asp:ScriptManager ID="SM" runat="server">
+    </asp:ScriptManager>
+
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <img src="Images/Fleadh-Logo.png"  style="width:200px;height:200px;"/>
+                <h1>Galway Fleadh Administration</h1>
+            </div>
+
+            <div id="LoginDiv" runat="server" class="loginDisplay">               
+            </div>
+
+            <div id="LogoutDiv" runat="server" class="loginDisplay">
+                <!-- <asp:HyperLink ID="HL_Logout" runat="server" NavigateUrl="~/Default.aspx">Logout</asp:HyperLink> -->
+                <asp:LinkButton ID="LB_Logout" runat="server"  
+                    onclick="LB_Logout_Click">Logout</asp:LinkButton>
+            </div>
+
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/AddCompetitor.aspx" Text="Add competitor" />
+                        <asp:MenuItem NavigateUrl="~/Edit.aspx" Text="Edit competitor" />
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+
+        <div class="main">
+            <asp:ContentPlaceHolder ID="cpMainContent" runat="server"/>
+        </div>
+
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

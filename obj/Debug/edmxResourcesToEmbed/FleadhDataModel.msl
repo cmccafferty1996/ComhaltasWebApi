@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="comhaltasTestModelStoreContainer" CdmEntityContainer="comhaltasTestEntities">
+    <EntitySetMapping Name="Admin_users">
+      <EntityTypeMapping TypeName="comhaltasTestModel.Admin_users">
+        <MappingFragment StoreEntitySet="Admin_users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="last_logon" ColumnName="last_logon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Age_groups">
+      <EntityTypeMapping TypeName="comhaltasTestModel.Age_groups">
+        <MappingFragment StoreEntitySet="Age_groups">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="age_group" ColumnName="age_group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="comhaltasTestModel.Branch">
+        <MappingFragment StoreEntitySet="Branches">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competitions">
+      <EntityTypeMapping TypeName="comhaltasTestModel.Competition">
+        <MappingFragment StoreEntitySet="Competitions">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="competition_number" ColumnName="competition_number" />
+          <ScalarProperty Name="competition_name" ColumnName="competition_name" />
+          <ScalarProperty Name="age_group" ColumnName="age_group" />
+          <ScalarProperty Name="competition_date" ColumnName="competition_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entrants">
+      <EntityTypeMapping TypeName="comhaltasTestModel.Entrant">
+        <MappingFragment StoreEntitySet="Entrant">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="entrant_name" ColumnName="entrant_name" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entries">
+      <EntityTypeMapping TypeName="comhaltasTestModel.Entry">
+        <MappingFragment StoreEntitySet="Entries">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="entrant" ColumnName="entrant" />
+          <ScalarProperty Name="competition" ColumnName="competition" />
+          <ScalarProperty Name="registered" ColumnName="registered" />
+          <ScalarProperty Name="instrument1" ColumnName="instrument1" />
+          <ScalarProperty Name="entrant2" ColumnName="entrant2" />
+          <ScalarProperty Name="instrument2" ColumnName="instrument2" />
+          <ScalarProperty Name="entrant3" ColumnName="entrant3" />
+          <ScalarProperty Name="instrument3" ColumnName="instrument3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instruments">
+      <EntityTypeMapping TypeName="comhaltasTestModel.Instrument">
+        <MappingFragment StoreEntitySet="Instruments">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="instrument_name" ColumnName="instrument name" />
+          <ScalarProperty Name="competition_type" ColumnName="competition type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="comhaltasTestModel.Result">
+        <MappingFragment StoreEntitySet="Results">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="competition" ColumnName="competition" />
+          <ScalarProperty Name="first" ColumnName="first" />
+          <ScalarProperty Name="second" ColumnName="second" />
+          <ScalarProperty Name="third" ColumnName="third" />
+          <ScalarProperty Name="recommended" ColumnName="recommended" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
